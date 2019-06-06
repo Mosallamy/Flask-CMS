@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+{#--- User page - show for ADMINS only ---#}
+{% block body %}
+    <h1>Users </h1>
+    <table class="table table-striped" id="myTable">
+        {#--- Table header -- Start ---#}
+        <tr>
+            <th onclick="sortTable(0)">ID</th>
+            <th onclick="sortTable(1)">ِEmail</th>
+            <th onclick="sortTable(2)">Name</th>
+            <th onclick="sortTable(3)">Username</th>
+            <th onclick="sortTable(4)">Role</th>
+            <th onclick="sortTable(5)">register_date</th>
+            <th colspan="2" class="text-center">Action</th>
+            <th></th>
+
+        </tr>
+        {#--- Table header -- End ---#}
+        {#--- Table content -- Start ---#}
+        {% for user in user %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.register_date }}</td>
+
+                <td>
+                    {#--- Admin deletes user -- Start ---#}
+                    <form action="{{url_for('delete_user', id=user.id)}}" method="post">
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                    </form>
+                </td>
+
+                <td>
+                    {#--- Check if role is USER -- Start ---#}
+                    {% if user.role == 'user' %}
+                        <form action="{{url_for('assign_admin', id=user.id)}}" method="post">
+                            <input type="submit" value="Assign Admin" class="btn btn-success">
+                        </form>
+                    {% endif %}
+                    {#--- Check if role is ADMIN -- Start ---#}
+                    {% if user.role == 'admin' %}
+                        <form action="{{url_for('assign_user', id=user.id)}}" method="post">
+                            <input type="submit" value="Assign User" class="btn btn-success">
+                        </form>
+                    {% endif %}
+                </td>
+
+            </tr>
+        {% endfor %}
+        {#--- Table content -- End ---#}
+    </table>
+{% endblock %}

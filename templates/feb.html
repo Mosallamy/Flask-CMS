@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{title}} {% endblock %}
+
+
+{% block body %}
+{{pritn1}}
+<ul class="list-group">
+	{% for i in x%}
+		<li class="list-group-item"><b>{{x.index(i)}}</b> - {{i}}</li>
+	{% endfor %}
+</ul>
+{% endblock %}

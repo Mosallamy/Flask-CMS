@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>Dashboard <small>Welcome  {{ session.username }}</small></h1>
+    <a class="btn btn-success" href="/add_article">Add Artcile</a>
+    <hr>
+    {% if result > 0 %}
+
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Tilte</th>
+            <th>Author</th>
+            <th>Date</th>
+            <th></th>
+            <th></th>
+        </tr>
+    {% for article in article %}
+        <tr>
+            <td>{{ article.id }}</td>
+            <td>{{ article.title }}</td>
+            <td>{{ username }}</td>
+            <td>{{ article.create_date }}</td>
+            <td><a href="/edit_article/{{ article.id }}" class="btn btn-primary pull-right">Edit</a></td>
+            <td>
+                <form action="{{url_for('delete_article', id=article.id)}}" method="post">
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    {% endif %}
+
+{% endblock %}

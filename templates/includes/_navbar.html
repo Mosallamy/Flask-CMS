@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="/">Flask App</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto" id="navbarNav">
+            <li class="nav-item active"><a class="nav-link" href="/">Home <span class="sr-only"></span></a></li>
+            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+            <li class="d-flex justify-content-between align-items-center"><a class="nav-link" href="/articles">Articles</a><span class="badge badge-primary badge-pill">{{session['count']}}</span></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            {% if session['role'] == 'super' %}
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">Dropdown</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/settings">Setting</a>
+                        <a class="dropdown-item" href="/users">Users</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout">Logout - {{ session['username']}} </a></div>
+      </li>
+
+              <li class="nav-item active"><a class="nav-link" href="/dashboard">Dashboard <span class="sr-only" ></span></a></li>
+          {% elif session.logged_in %}
+<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/settings">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/logout">Logout - {{ session['username'] }}</a>
+        </div>
+      </li>
+
+              <li class="nav-item active"><a class="nav-link" href="/dashboard">Dashboard <span class="sr-only" ></span></a></li>
+          {% else %}
+              <li class="nav-item active"><a class="nav-link" href="/login">Login <span class="sr-only"></span></a></li>
+              <li class="nav-item active"><a class="nav-link" href="/regsiter">Regsiter <span class="sr-only"></span></a></li>
+
+          {% endif %}
+    </ul>
+
+    </form>
+  </div>
+</nav>
+
+<br><br><br>

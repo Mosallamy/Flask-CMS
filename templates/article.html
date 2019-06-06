@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block title %} {{ article.title }} {% endblock %}
+{% block body %}
+    <h1>{{ article.title }}</h1>
+    <hr>
+    <div class="text-center">
+        <img class="" width="50%" src="/static/{{ article.photo }} ">
+    </div>
+    <hr>
+    <small>Written by <b><a href="/author/{{ name }}"> {{ name}} </a> </b>on {{ article.create_date }}</small>
+    <br><br>
+    <div>
+    {{ article.body | safe }}
+    </div>
+
+{% endblock %}

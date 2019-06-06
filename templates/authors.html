@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>Our Authors</h1>
+    <ul class="list-group">
+    {% for authors in authors %}
+
+        <li class="list-group-item"><a href="/author/{{ authors.username }}">{{ authors.username }}</a></li>
+
+    {% endfor %}
+    </ul>
+{% endblock %}
