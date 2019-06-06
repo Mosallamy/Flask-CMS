@@ -16,7 +16,7 @@ from werkzeug.utils import secure_filename
 
 
 UPLOAD_FOLDER = '/Users/Mosallamy/Desktop/myFlaskApp/static'
-ALLOW ED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
