@@ -12,7 +12,7 @@ General:
     - login and logut system    
     - people can view all articles written by a specif user
   
-CMS:
+__CMS:__
 
     - adding articles without the need to deal with (html, css  etc)
     - adding a picture to an article
