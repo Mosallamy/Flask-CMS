@@ -7,7 +7,7 @@ I will be adding more details in the upcoming days.
 
 # Features:
 
-General:
+__General:__
    
     - login and logut system    
     - people can view all articles written by a specif user
@@ -20,14 +20,14 @@ __CMS:__
     - a user can delete his own articles
     - a user can his own articles 
   
-Super Amdin Control:
+__Super Amdin Control:__
 
     - can assign a user to be an admin
     - can delete the account of a user
     - can see the users logged in the website
 
 
-Technologies used:
+__Technologies used:__
 
     - Python
     - Flask
