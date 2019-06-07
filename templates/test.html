@@ -1,16 +1,21 @@
-{% include 'layout.html' %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html>
+    <head>
+    </head>
+    <body>
+        <button id="sign-in-with-apple-button"> Sign In with Apple </button>
+        <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+        <script type="text/javascript">
+            AppleID.auth.init({
+                clientId : '[CLIENT_ID]',
+                scope : '[SCOPES]',
+                redirectURI: '[REDIRECT_URI]',
+                state : '[STATE]'
+            });
 
-<form method="post">
-    <input type="text" name="username">
-    <input type="submit" value="login">
-</form>
-
-</body>
+            const buttonElement = document.getElementById('sign-in-with-apple-button');
+            buttonElement.addEventListener('click', () => {
+                AppleID.auth.signIn();
+            });
+        </script>
+    </body>
 </html>

@@ -1,12 +1,38 @@
 {% extends 'layout.html' %}
 {% block title %} {{ article.title }} {% endblock %}
 {% block body %}
-    <h1>{{ article.title }}</h1>
-    <hr>
-    <div class="text-center">
-        <img class="" width="50%" src="/static/{{ article.photo }} ">
+
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-2">
+
+        </div>
+        <div class="col-xs-10">
+
+        </div>
     </div>
+</div>
+
+
+
+    <div class=" d-flex">
+        <h1>{{ article.title }}</h1>
+    </div>
+
+
+    <div class="btn-group " role="group" aria-label="Basic example">
+        <a href="/article/{{ first }}"><button type="button" class="btn btn-secondary ">Previous</button></a>
+        <a href="/article/{{ last }}"><button type="button" class="btn btn-secondary">Next</button></a>
+    </div>
+
     <hr>
+    {% if article.photo %}
+        <div class="text-center">
+            <img class="" width="50%" src="/static/{{ article.photo }} ">
+        </div>
+        <hr>
+    {% endif %}
+
     <small>Written by <b><a href="/author/{{ name }}"> {{ name}} </a> </b>on {{ article.create_date }}</small>
     <br><br>
     <div>

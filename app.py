@@ -13,9 +13,7 @@ from string import Template
 import re
 from werkzeug.utils import secure_filename
 
-
-
-UPLOAD_FOLDER = '/Users/Mosallamy/Desktop/myFlaskApp/static'
+UPLOAD_FOLDER = '/Users/Mosallamy/Desktop/myFlaskApp/app/static'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
@@ -103,7 +101,7 @@ def articles():
 
 #----------------------------------------------   Single Article page   ----------------------------------------------#
 
-@app.route('/article/<string:id>/')
+@app.route('/article/<int:id>/')
 def article(id):
 
     connection = mysql.connect()
@@ -112,9 +110,24 @@ def article(id):
     article = cursor.fetchone()
     result = cursor.execute('select username from users where id = %s', article['author'])
     name = cursor.fetchone()
-    cursor.close()
-    return render_template('article.html', id=id, article=article, name=name['username'])
+    result = cursor.execute('select id from article where id > %s order by id ASC',id)
+    last = cursor.fetchone()
+    if last: last = last['id']
+    if(id != last and last != None):
+        last = last
+    else:
+        last = id
+    result = cursor.execute('select id from article where id < %s order by id desc',id)
+    first = cursor.fetchone()
 
+    if first: first = first['id']
+
+    if (id != first and first != None):
+        first = first
+    else:
+        first = id
+    cursor.close()
+    return render_template('article.html', id=id, article=article, name=name['username'],first=first,last=last)
 
 #----------------------------------------------   Register Page   ----------------------------------------------#
 
@@ -250,9 +263,12 @@ def add_article():
         title = form.title.data
         body = form.body.data
         username = session['username']
-        file = request.files['file']
-        filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        if request.files['file']:
+            file = request.files['file']
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        else:
+            filename = None
         connection = mysql.connect()
         cursor = connection.cursor()
 
@@ -313,7 +329,13 @@ def edit_article(id):
 def delete_article(id):
     connection = mysql.connect()
     cursor = connection.cursor()
-
+    result = cursor.execute('select photo from article where id = %s', [id])
+    photo = cursor.fetchone()
+    print (photo)
+    if photo['photo']:
+        print photo
+        photo = photo['photo']
+        os.remove(os.path.join(UPLOAD_FOLDER, photo))
     result = cursor.execute('delete from article where id = %s', [id])
     cursor.execute("SELECT COUNT(*) FROM article")
     property_count = cursor.fetchone()
@@ -488,6 +510,10 @@ def ss(id=None):
     print(google_place_name)
     print(test)
     return render_template('mosallamy.html')
+
+@app.route('/test/')
+def test():
+    return render_template('test.html')
 
 
 if __name__ == '__main__':
