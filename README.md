@@ -23,6 +23,7 @@ Features:
 
 
 Technologies used:
+
     - Python
     - Flask
     - Jinja
