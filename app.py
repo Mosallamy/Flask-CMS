@@ -13,7 +13,8 @@ from string import Template
 import re
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = '/Users/Mosallamy/Desktop/myFlaskApp/app/static'
+dir = os.path.dirname(__file__)
+UPLOAD_FOLDER = 'static'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
@@ -266,7 +267,7 @@ def add_article():
         if request.files['file']:
             file = request.files['file']
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file.save(os.path.join(dir,app.config['UPLOAD_FOLDER'], filename))
         else:
             filename = None
         connection = mysql.connect()
@@ -335,7 +336,7 @@ def delete_article(id):
     if photo['photo']:
         print photo
         photo = photo['photo']
-        os.remove(os.path.join(UPLOAD_FOLDER, photo))
+        os.remove(os.path.join(dir,UPLOAD_FOLDER, photo))
     result = cursor.execute('delete from article where id = %s', [id])
     cursor.execute("SELECT COUNT(*) FROM article")
     property_count = cursor.fetchone()
