@@ -14,7 +14,7 @@ import re
 from werkzeug.utils import secure_filename
 
 dir = os.path.dirname(__file__)
-UPLOAD_FOLDER = 'static'
+UPLOAD_FOLDER = 'static/images'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
@@ -128,7 +128,7 @@ def article(id):
     else:
         first = id
     cursor.close()
-    return render_template('article.html', id=id, article=article, name=name['username'],first=first,last=last)
+    return render_template('article.html', id=id, article=article, name=name['username'],first=first,last=last,UPLOAD_FOLDER=UPLOAD_FOLDER)
 
 #----------------------------------------------   Register Page   ----------------------------------------------#
 
