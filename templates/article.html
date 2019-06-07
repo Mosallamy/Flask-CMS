@@ -28,7 +28,7 @@
     <hr>
     {% if article.photo %}
         <div class="text-center">
-            <img class="" width="50%" src="/static/{{ article.photo }} ">
+            <img class="" width="50%" src="/{{ UPLOAD_FOLDER }}/{{ article.photo }} ">
         </div>
         <hr>
     {% endif %}
