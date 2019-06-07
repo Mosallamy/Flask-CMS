@@ -20,3 +20,13 @@ Features:
   - can assign a user to be an admin
   - can delete the account of a user
   - can see the users logged in the website
+
+
+Technologies used:
+    - Python
+    - Flask
+    - Jinja
+    - WSGI
+    - MySQL
+    - WTForms
+    - Passlib
