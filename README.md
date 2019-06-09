@@ -27,7 +27,7 @@ __Super Amdin Control:__
     - can see the users logged in the website
 
 
-__Technologies used:__
+# Technologies used:
 
     - Python
     - Flask
