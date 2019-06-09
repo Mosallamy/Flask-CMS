@@ -66,7 +66,7 @@ def logged_out(f):
     return wrap
 
 #----------------------------------------------   index page   ----------------------------------------------#
-#test
+
 @app.route('/')
 def index():
     return render_template('index.html', title ='Home')
