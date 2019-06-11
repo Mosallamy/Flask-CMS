@@ -29,8 +29,6 @@ __Super Amdin Control:__
 
 # Technologies/Dependencies used:
 
-    - Python
-    - Flask
     - Jinja
     - WSGI
     - MySQL
