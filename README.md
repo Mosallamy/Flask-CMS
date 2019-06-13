@@ -1,7 +1,6 @@
 # FLASK CMS
-Flask is a powerfull "microframework" that enables you to develop web application written in python.
 
-This rep demonstrate how to build a basic application that performs CRUD operations.
+This project is a simple blog web applcation built using Flask
 
 I will be adding more details in the upcoming days.
 
